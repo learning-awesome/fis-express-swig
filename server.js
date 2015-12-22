@@ -1,10 +1,77 @@
-var yog = require('yog'),
-    app = require('express')(),
-    port = process.env.PORT || 8000;
+var express = require('express');
+var path = require('path');
+var favicon = require('static-favicon');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var swigView = require('./server/lib/swig/view/index.js');
+
+// 启动express
+var app = express();
+
+//设置视图模板的默认后缀名为tpl
+app.set('view engine', 'tpl');
+
+//设置模板文件文件夹,__dirname为全局变量,表示网站根目录
+app.set('views', __dirname + '/client/views');
+
+//设置自定义swig view引擎
+app.engine('.tpl', swigView.init({}, app));
 
 
-app.use(yog());
+//var swig = require('swig');
+//var swigObj = new swig.Swig();
+//app.engine('.tpl', swigObj.renderFile);
 
-app.listen(port, function (err) {
-    console.log('[%s] Listening on http://localhost:%d', app.settings.env, port);
+app.use(favicon());
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: '123456',
+    cookie: { maxAge: 60 * 1000 }
+}));
+
+app.use(express.static(path.join(__dirname, 'client/public')));
+
+app.use('/', require('./server/controller/index.js'));
+app.use('/test', require('./server/controller/test.js'));
+
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
+
+
+if (app.get('env') === 'dev') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('widget/error/error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+app.use(function(err, req, res, next) {
+    console.log('>>>err %o', err);
+    res.status(err.status || 500);
+    res.render('widget/error/error', {
+        message: err.message,
+        error: err.status
+    });
+});
+
+
+
+var server = app.listen(app.get('port')||3000, function() {
+    console.log('Express server listening on port ' + server.address().port);
+});
+
+
+module.exports = app;

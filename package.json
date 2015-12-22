@@ -1,26 +1,30 @@
 {
-  "name": "yog-app",
+  "name": "fis-app",
   "version": "0.0.1",
-  "description": "yog-app",
-  "main": "server.js",
-  "dependencies": {
-    "express": "~4.4.3",
-    "yog": "~0.0.7",
-    "yog-devtools": "~0.0.1"
-  },
-  "devDependencies": {},
+  "description": "fis-app",
+  "main":"server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "express": "~4.2.0",
+    "express-session": "^1.12.1",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "swig": "^1.4.2",
+    "caller": "0.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fex-team/yogurt-app.git"
+    "url": "https://github.com/hubcarl/fisapp.git"
   },
   "bugs": {
-    "url": "https://github.com/fex-team/yogurt-app/issues"
+    "url": "https://github.com/hubcarl/fisapp/issues"
   },
-  "homepage": "https://github.com/fex-team/yogurt-app",
-  "author": "fex-team",
+  "homepage": "https://github.com/hubcarl/fisapp",
+  "author": "sky",
   "license": "MIT"
 }
