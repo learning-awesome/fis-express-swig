@@ -1,9 +1,10 @@
-/views
-/config/*-map.json
-/config/server.conf
-/test
-/node_modules
-/public/*/
-/data
-.DS_Store
+# Logs
+logs
 *.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.iml
+node_modules
