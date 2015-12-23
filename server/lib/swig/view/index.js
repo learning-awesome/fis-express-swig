@@ -18,13 +18,12 @@ exports.init = function(settings, app) {
     settings.views = app.get('views');
 
 
-    Engine = utils.resolveEngine(settings.engine || 'tags');
+    Engine = utils.resolveEngine(settings.engine || 'engine');
 
     return function(filepath, locals, done) {
 
         console.log('>>>filePath:' +filepath);
-        // 关于 response 来源，请查看 hackResponse 方法。
-        // 以及 lib/reponse.js
+        // 关于 response 来源，请查看 hackResponse 方法,以及 lib/reponse.js
         var res = locals.response;
 
         // 创建一个新对象。

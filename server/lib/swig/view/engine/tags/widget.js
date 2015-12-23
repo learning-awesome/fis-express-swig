@@ -41,6 +41,7 @@ exports.compile = function(compiler, args) {
         }).join(' '),
         w_args = {};
 
+    console.log('file:' + file  +  ' parentFile:' + parentFile);
     args.map(function(w) {
         if (w.k) w_args[w.k] = w.v;
     });

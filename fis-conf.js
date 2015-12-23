@@ -50,18 +50,21 @@ fis.config.merge({
             {
                 reg: 'server.js',
                 useMap:false,
-                release: '/server.js'
+                useMap: false,
+                useHash: false,
+                useCompile: false
             },
 
             {
                 reg: /^\/server\/(.*)/i,
-                useMap:false,
-                release: '$&'
+                useMap: false,
+                useHash: false,
+                useCompile: false
             },
             {
                 reg: /^\/client\/views\/page\/(.+\.tpl)$/i,
                 isMod: true,
-                release: '/client/views/$1',
+                release: '/client/views/page/$1',
                 url: '$1',
                 extras: {
                     isPage: true

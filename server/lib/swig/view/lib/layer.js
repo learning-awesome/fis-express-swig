@@ -40,7 +40,11 @@ function beforePageletRender(pagelet, locals) {
 function afterPageletRender(pagelet, locals) {
     var layer = locals._fiswig;
 
+    console.log('----------afterPageletRender1------------');
+
     if (!layer) return;
+
+    console.log('----------afterPageletRender2------------', JSON.stringify(layer));
 
     var scripts = layer.getScripts();
     var styles = layer.getStyles();
@@ -106,14 +110,19 @@ var createHanlder = module.exports = function(res, options) {
 
     options = _.mixin(_.mixin({}, defaultOptions), options);
 
+    console.log('--layer  options:' + JSON.stringify(options));
     // 静态资源 api
     var fis = res.fis;
+
+    console.log('--layer  deps:' + JSON.stringify(res.deps));
 
     // bigpipe api
     var bigpipe = res.bigpipe;
 
     // 模板目录
     var views = options.views;
+
+    console.log('--layer  views:' + JSON.stringify(views));
 
     var loaded = [];
 
@@ -202,7 +211,7 @@ var createHanlder = module.exports = function(res, options) {
 
                 return uri;
             } else {
-                // log.warning('not found resource, resource `id` = ' + id);
+                console.log('not found resource, resource `id` = ' + id);
             }
         }
     };

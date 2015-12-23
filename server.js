@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var resourceMap = require('./server/middleware/resource.js');
 var swigView = require('./server/lib/swig/view/index.js');
 
 // 启动express
@@ -23,6 +24,11 @@ app.engine('.tpl', swigView.init({}, app));
 //var swig = require('swig');
 //var swigObj = new swig.Swig();
 //app.engine('.tpl', swigObj.renderFile);
+
+//初始化map资源依赖
+app.use(resourceMap({
+    config_dir: __dirname + '/client'
+}));
 
 app.use(favicon());
 app.use(morgan('combined'));
@@ -69,7 +75,7 @@ app.use(function(err, req, res, next) {
 
 
 
-var server = app.listen(app.get('port')||3000, function() {
+var server = app.listen(app.get('port')||9000, function() {
     console.log('Express server listening on port ' + server.address().port);
 });
 

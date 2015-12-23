@@ -67,6 +67,7 @@ SwigWrap.prototype._read = function(n) {
 };
 
 SwigWrap.prototype.makeStream = function(view, locals) {
+    console.log('--------makeStream-------');
     Readable.call(this, null);
     this.view = view;
     this.locals = locals;
