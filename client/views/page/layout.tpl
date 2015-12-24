@@ -9,16 +9,17 @@
         <link rel="icon" href="/static/favicon.ico">
         <title>{{ title }}</title>
 
-        {% require "client/public/css/bootstrap.css" %}
-        {% require "client/public/css/bootstrap-theme.css" %}
-        {% require "client/public/css/style.css" %}
-        {% require "client/public/js/bigpipe.js" %}
-        {% require "client/public/js/jquery-1.10.2.js" %}
-        {% require "client/public/js/bootstrap.js" %}
+        {% require "client/public/stylesheets/normalize.css" %}
+        {% require "client/public/stylesheets/bootstrap.css" %}
+        {% require "client/public/app.css" %}
+
 
     {% endhead %}
 
     {% body %}
+
+        {% widget "widget/menu/menu.tpl" %}
+
         <div id="wrapper">
             {% widget "widget/header/header.tpl" %}
 

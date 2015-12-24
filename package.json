@@ -15,7 +15,8 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "swig": "^1.4.2",
-    "caller": "0.0.1"
+    "caller": "0.0.1",
+    "mysql": "felixge/node-mysql"
   },
   "repository": {
     "type": "git",
