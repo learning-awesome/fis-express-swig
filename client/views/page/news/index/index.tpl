@@ -31,6 +31,8 @@
 </div>
 {% endblock %}
 
-{% script %}
-   require('client/views/page/news/index/index.js');
-{% endscript %}
+{% require "client/views/page/news/index/index.js" %}
+
+<script>
+    require('client/views/page/news/index/index.js');
+</script>

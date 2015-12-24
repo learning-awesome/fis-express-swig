@@ -18,7 +18,7 @@
 
 {% body %}
 
-{% widget "widget/menu/menu.tpl" %}
+{% widget "client/views/widget/menu/menu.tpl" %}
 
 <div class="container">
     {% block content %}

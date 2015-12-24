@@ -71,6 +71,12 @@ fis.config.merge({
                 }
             },
             {
+                reg: /^\/client\/views\/page\/(.*\.(js|css))$/i,
+                isMod: true,
+                url: 'page/$1',
+                release: '/client/public/page/$1'
+            },
+            {
                 reg: /^\/client\/views\/widget\/(.*\.tpl)$/i,
                 isMod: true,
                 url: 'widget/$1',
