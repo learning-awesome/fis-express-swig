@@ -45,8 +45,8 @@ app.use(session({
 app.use(express.static(path.join(__dirname, '/client')));
 
 
-app.use('/', require('./server/controller/index.js'));
-app.use('/test', require('./server/controller/test.js'));
+app.use('/test', require('./server/controller/test/test.js'));
+app.use('/news', require('./server/controller/news/index.js'));
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

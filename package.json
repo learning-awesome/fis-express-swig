@@ -1,7 +1,7 @@
 {
-  "name": "fis-app",
+  "name": "fis-express-swig",
   "version": "0.0.1",
-  "description": "fis-app",
+  "description": "fis-express-swig",
   "main":"server.js",
   "scripts": {
     "start": "node ./bin/www"
@@ -16,16 +16,16 @@
     "debug": "~0.7.4",
     "swig": "^1.4.2",
     "caller": "0.0.1",
-    "mysql": "felixge/node-mysql"
+    "mysql":"2.10.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hubcarl/fisapp.git"
+    "url": "https://github.com/hubcarl/fis-express-swig.git"
   },
   "bugs": {
-    "url": "https://github.com/hubcarl/fisapp/issues"
+    "url": "https://github.com/hubcarl/fis-express-swig/issues"
   },
-  "homepage": "https://github.com/hubcarl/fisapp",
+  "homepage": "https://github.com/hubcarl/fis-express-swig",
   "author": "sky",
   "license": "MIT"
 }
