@@ -42,7 +42,8 @@ app.use(session({
     cookie: { maxAge: 60 * 1000 }
 }));
 
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, '/client')));
+
 
 app.use('/', require('./server/controller/index.js'));
 app.use('/test', require('./server/controller/test.js'));

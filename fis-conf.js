@@ -81,13 +81,13 @@ fis.config.merge({
                 reg: /^\/client\/views\/widget\/(.*\.(js|css))$/i,
                 isMod: true,
                 useHash:true,
-                url: '/widget/$1',
+                url: 'widget/$1',
                 release: '/client/public/widget/$1'
             },
 
             {
                 reg: /^\/client\/public\/(.*)/i,
-                url: 'static/$1',
+                url: 'public/$1',
                 release: '/client/public/$1'
             },
 

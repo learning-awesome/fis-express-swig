@@ -1,11 +1,10 @@
 var fs = require('fs');
 var path = require('path');
-var idr = /^([\w0-9_\-]+):(?!(\/|\\))[^:]+$/i;
-var log;
+var log=console.log;
 
 function ResourceApi(config_dir) {
     this.config_dir = config_dir;
-    this.maps = {};
+    this.maps = undefined;
 }
 
 /**
@@ -21,17 +20,13 @@ ResourceApi.prototype.resolve = function(id) {
 };
 
 ResourceApi.prototype.getInfo = function(id, ignorePkg) {
-    if (!id || !idr.exec(id)) {
-        return null;
-    }
 
-    var ns = this.getNS(id);
     var info;
 
-    if (this.maps[ns] || this.lazyload(ns)) {
-        info = this.maps[ns]['res'][id];
+    if (this.maps || this.lazyload()) {
+        info = this.maps['res'][id];
         if (!ignorePkg && info && info['pkg']) {
-            info = this.maps[ns]['pkg'][info['pkg']];
+            info = this.maps['pkg'][info['pkg']];
         }
     }
 
@@ -39,53 +34,29 @@ ResourceApi.prototype.getInfo = function(id, ignorePkg) {
 };
 
 ResourceApi.prototype.getPkgInfo = function(id) {
-    if (!id || !idr.exec(id)) {
-        return null;
-    }
 
-    var ns = this.getNS(id);
     var info;
 
-    if (this.maps[ns] || this.lazyload(ns)) {
-        info = this.maps[ns]['pkg'][id];
+    if (this.maps || this.lazyload()) {
+        info = this.maps['pkg'][id];
     }
 
     return info;
 };
 
-ResourceApi.prototype.getNS = function (id) {
-    var p = id.indexOf(':');
-    if (p != -1) {
-        return id.substr(0, p);
-    } else {
-        return '__global__';
-    }
-};
 
-ResourceApi.prototype.lazyload = function (ns) {
+ResourceApi.prototype.lazyload = function () {
 
-    var map_json = path.join(this.config_dir, 'map.json');
+    var mapFilePath = path.join(this.config_dir, 'map.json');
 
-    console.log('---map json:' + map_json);
+    console.log('---mapFilePath:' + mapFilePath);
+
     try {
-        stat = fs.statSync(map_json);
-    } catch(e) {
-        log.log('fatal', {
-            stack: e
-        });
-        return false;
-    }
-
-    if (stat && stat.isFile()) {
-        try {
-            this.maps[ns] = JSON.parse(fs.readFileSync(map_json));
-        } catch (e) {
-            log.log('fatal', {
-                stack: e
-            });
-            return false;
-        }
-    } else {
+        var mapJSONStr =  fs.readFileSync(mapFilePath);
+        this.maps = JSON.parse(mapJSONStr);
+        console.log('>>>>mapJSONStr:'+ mapJSONStr);
+    } catch (e) {
+        console.log('---read map error:' + e.toString());
         return false;
     }
     return true;

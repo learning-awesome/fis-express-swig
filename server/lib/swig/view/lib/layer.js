@@ -114,7 +114,7 @@ var createHanlder = module.exports = function(res, options) {
     // 静态资源 api
     var fis = res.fis;
 
-    console.log('--layer  deps:' + JSON.stringify(res.deps));
+    console.log('--layer  maps:' + JSON.stringify(fis.maps));
 
     // bigpipe api
     var bigpipe = res.bigpipe;

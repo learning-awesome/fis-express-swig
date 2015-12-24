@@ -1,5 +1,5 @@
 <!doctype html>
-{% html lang="en" framework="js/mod.js" %}
+{% html lang="en" framework="client/public/js/mod.js" %}
     {% head %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +9,12 @@
         <link rel="icon" href="/static/favicon.ico">
         <title>{{ title }}</title>
 
-        {% require "css/bootstrap.css" %}
-        {% require "css/bootstrap-theme.css" %}
-        {% require "css/style.css" %}
-        {% require "js/bigpipe.js" %}
-        {% require "js/jquery-1.10.2.js" %}
-        {% require "js/bootstrap.js" %}
+        {% require "client/public/css/bootstrap.css" %}
+        {% require "client/public/css/bootstrap-theme.css" %}
+        {% require "client/public/css/style.css" %}
+        {% require "client/public/js/bigpipe.js" %}
+        {% require "client/public/js/jquery-1.10.2.js" %}
+        {% require "client/public/js/bootstrap.js" %}
 
     {% endhead %}
 
