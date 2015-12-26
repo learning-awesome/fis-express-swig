@@ -36,7 +36,7 @@
 
 ## 示例截图
 
- ![image](https://github.com/hubcarl/fis－express－swig/raw/master/client/public/static/images/demo.png)
+ ![image](https://raw.githubusercontent.com/hubcarl/fis-express-swig/master/client/public/static/images/demo.png)
 
 
 ## 快速开始
