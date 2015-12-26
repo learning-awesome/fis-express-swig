@@ -34,6 +34,11 @@
 * 基于 `widget` 标签，可以轻松实现组件化，同名tpl、 css、js自动关联加载。
 
 
+## 示例截图
+
+ ![image](https://github.com/hubcarl/fis－express－swig/client/public/static/images/demo.png)
+
+
 ## 快速开始
 
 如果还没有安装 [node](http://nodejs.org) 请先安装 [node](http://nodejs.org).
@@ -192,16 +197,8 @@ news/index/index.tpl
 3. 纯 css 类：只是包含 css 文件。比如 compass. 同样也是可以通过 require 标签引用。
 
 
+
 ### fis-conf.js 
 
 编译配置文件，详情请查看[配置 API](http://fis.baidu.com/docs/api/fis-conf.html)。
 
-
-
-### 参考
-
-+ [swig](https://github.com/paularmstrong/swig/)
-+ [yog-view](https://github.com/fex-team/yog-view)
-+ [yog-bigpipe](https://github.com/fex-team/yog-bigpipe)
-+ [yog-swig](https://github.com/fex-team/yog-swig)
-+ [yog-log](https://github.com/fex-team/yog-log)
