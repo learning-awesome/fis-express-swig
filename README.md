@@ -178,7 +178,7 @@ news/index/index.tpl
   模板类文件，可以在模板中通过 widget 标签引用。如
 
   ```tpl
-  {% widget "example:widget/pagelets/jumbotron/jumbotron.tpl" %}
+  {% widget "widget/menu/menu.tpl" %}
   ```
 2. js 类： 主要包含 js 文件，放在此目录下的文件一般都会自动被 amd define 包裹，可选择性的添加同名 css 文件，会自动被引用。
 
