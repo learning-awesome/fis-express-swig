@@ -13,7 +13,11 @@ var exports = module.exports;
  * @param {string|var} id  the resource `id` of the FIS system.
  */
 exports.compile = function(compiler, args, content, parents, options, blockName) {
-    var code = '_ctx._fiswig.load(' + args.pop() + ');'
+
+    var code = '_ctx.fiswig.load(' + args.pop() + ');';
+
+    console.log('>>>>require compile:' + code);
+
     return code;
 };
 

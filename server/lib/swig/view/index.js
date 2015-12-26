@@ -17,7 +17,6 @@ exports.init = function(settings, app) {
 
     settings.views = app.get('views');
 
-
     Engine = utils.resolveEngine(settings.engine || 'engine');
 
     return function(filepath, locals, done) {
@@ -28,7 +27,7 @@ exports.init = function(settings, app) {
 
         // 创建一个新对象。
         var options = utils.mixin({}, settings);
-        console.log('>>>>>settings:' + JSON.stringify(settings) );
+        //console.log('>>>>>settings:' + JSON.stringify(settings) );
 
         // 初始化 layer 层。
         // 提供 addScript, addStyle, resolve, addPagelet 各种接口。
@@ -37,10 +36,13 @@ exports.init = function(settings, app) {
 
         var sentData = false;
 
-        console.log('>>>>>options:' + JSON.stringify(options) + ' prototols:' + JSON.stringify(prototols));
+        //console.log('>>>>>options:' + JSON.stringify(options) + ' prototols:' + JSON.stringify(prototols));
+
+        //console.log('>>>engine local %o', locals);
+
         new Engine(options, prototols)
 
-            .makeStream(filepath, utils.mixin(locals, {_fiswig: prototols}))
+            .makeStream(filepath, utils.mixin(locals, {fiswig: prototols}))
 
             // 合并 tpl 流 和 bigpipe 流。
             .pipe(combine(prototols))

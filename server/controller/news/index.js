@@ -20,7 +20,7 @@ router.get('/:pageIndex/:pageSize', function (req, res) {
   var pageSize = req.params.pageSize;
   console.log('--------pageIndex:' + pageIndex + ' pageSize:' + pageSize);
   Article.query(pageIndex, pageSize).then(function(result){
-    res.render('page/news/index', {list: result});
+    res.render('page/news/index.tpl', {list: result});
   });
 });
 

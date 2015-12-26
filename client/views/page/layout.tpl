@@ -1,5 +1,5 @@
 <!doctype html>
-{% html lang="en" framework="client/public/js/mod.js" %}
+{% html lang="en" framework="public/static/js/mod.js"  %}
 {% head %}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,21 +9,28 @@
 <link rel="icon" href="/static/favicon.ico">
 <title>{{ title }}</title>
 
-{% require "client/public/css/normalize.css" %}
-{% require "client/public/css/bootstrap.css" %}
-{% require "client/public/css/app.css" %}
+{% require "public/static/css/normalize.css" %}
+{% require "public/static/css/bootstrap.css" %}
+{% require "public/static/css/app.css" %}
 
 
 {% endhead %}
 
 {% body %}
 
-{% widget "client/views/widget/menu/menu.tpl" %}
+{% widget "widget/menu/menu.tpl" %}
+
+
+{% block beforecontent %}
+{% endblock %}
 
 <div class="container">
     {% block content %}
     {% endblock %}
 </div>
+
+{% block aftercontent %}
+{% endblock %}
 
 {% endbody %}
 

@@ -1,5 +1,5 @@
-var Pager = require('public/component/pager.js');
-var XHR = require('public/component/xhr.js');
+var Pager = require('client/public/component/pager.js');
+var XHR = require('client/public/component/xhr.js');
 
 var pager = new Pager({pageIndex: 2, defaultBottomHeight: 60});
 pager.init(function (successCallback) {

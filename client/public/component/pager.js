@@ -12,7 +12,7 @@ function Pager(option){
     this.pagerBottom = document.getElementById(opt.pagerBottomId||'pagerBottom');
     this.pagerLoadedHtml=opt.pagerLoadedHtml||"已全部加载完成";
     this.pagerBottom = document.getElementById(opt.pagerBottomId||'pagerBottom')||{};
-    this.pagerBottom.innerHTML= opt.pagerLoadingHtml||'<img src="images/loading.gif" />&nbsp;&nbsp;正在加载';
+    this.pagerBottom.innerHTML= opt.pagerLoadingHtml||'<img src="public/static/images/loading.gif" />&nbsp;&nbsp;正在加载';
 }
 
 
@@ -58,4 +58,8 @@ Pager.prototype.init = function(loadData){
     }
 
     window.addEventListener('scroll', loadNextPage, false);
+}
+
+if(module && module.exports){
+    module.exports =Pager;
 }

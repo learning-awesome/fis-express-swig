@@ -37,13 +37,13 @@ _.resolveEngine = (function() {
     // swig-view 项目目录。
     var root = path.dirname(path.dirname(caller()));
 
-    console.log('>>>>root:' + root);
+    //console.log('>>>>root:' + root);
     return function resolveEngine(name) {
         if (typeof name === 'function'){
             return name;
         }
 
-        console.log('>>view engine path:' + path.resolve(root, name));
+        //console.log('>>view engine path:' + path.resolve(root, name));
 
         var fn = _.tryResolve(name) || _.tryResolve(path.resolve(root, name));
 

@@ -1,9 +1,3 @@
-/**
- * file: mod.js
- * ver: 1.0.3
- * auth: zhangjiachen@baidu.com
- * update: 11:48 2013/7/10
- */
 var require, define;
 
 (function(self) {
@@ -133,6 +127,10 @@ var require, define;
         resMap = obj['res'] || {};
         pkgMap = obj['pkg'] || {};
     };
+
+    require.printMap = function(){
+        console.log('>>>resMap %o, pkgMap %o',resMap, pkgMap);
+    }
 
     require.alias = function(id) {return id};
 

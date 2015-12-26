@@ -30,7 +30,7 @@ var ignore = 'ignore',
  * @param {literal}     [ignore missing] Will output empty string if not found instead of throwing an error.
  */
 exports.compile = function(compiler, args) {
-    console.log(' args:' +JSON.stringify(args));
+    //console.log(' args:' +JSON.stringify(args));
     var file = args.shift(),
         onlyIdx = args.indexOf(only),
         onlyCtx = onlyIdx !== -1 ? args.splice(onlyIdx, 1) : false,
@@ -41,13 +41,13 @@ exports.compile = function(compiler, args) {
         }).join(' '),
         w_args = {};
 
-    console.log('file:' + file  +  ' parentFile:' + parentFile);
+    //console.log('file:' + file  +  ' parentFile:' + parentFile);
     args.map(function(w) {
         if (w.k) w_args[w.k] = w.v;
     });
 
     return (ignore ? '  try {\n' : '') +
-        '_output += _swig._w(_ctx._fiswig, '+ file+',' + JSON.stringify(w_args) + ', {' +
+        '_output += _swig._w(_ctx.fiswig, '+ file+',' + JSON.stringify(w_args) + ', {' +
         'resolveFrom: "' + parentFile + '"' +
         '})(' +
         ((onlyCtx && w) ? w : (!w ? '_ctx' : '_utils.extend({}, _ctx, ' + w + ')')) +

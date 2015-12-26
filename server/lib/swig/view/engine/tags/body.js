@@ -19,7 +19,7 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
     });
 
     var code = compiler(content, parents, options, blockName);
-    return '_output += "<body ' + (attrs.join(' ').replace(/"/g, "\\\"")) + '>";' + code + '_output += _ctx._fiswig.JS_HOOK + "</body>";';
+    return '_output += "<body ' + (attrs.join(' ').replace(/"/g, "\\\"")) + '>";' + code + '_output += _ctx.fiswig.JS_HOOK + "</body>";';
 };
 
 exports.parse = function(str, line, parser, types, stack, opts) {

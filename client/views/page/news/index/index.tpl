@@ -1,4 +1,5 @@
 {% extends 'page/layout.tpl' %}
+
 {% block content %}
 
 <div class="container smart-container">
@@ -29,10 +30,13 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
 {% require "client/views/page/news/index/index.js" %}
 
-<script>
+{% script %}
+    console.log('>>>>test>>>>>');
     require('client/views/page/news/index/index.js');
-</script>
+{% endscript %}
+
+
+{% endblock %}

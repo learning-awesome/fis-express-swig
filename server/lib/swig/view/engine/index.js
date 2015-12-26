@@ -34,7 +34,7 @@ var swigInstance;
  */
 var SwigWrap = module.exports = function SwigWrap(options, layer) {
 
-    console.log('>>>options0' + JSON.stringify(options));
+    //console.log('>>>options0' + JSON.stringify(options));
 
     if (!(this instanceof SwigWrap)) {
         return new SwigWrap(options, layer);
@@ -46,8 +46,8 @@ var SwigWrap = module.exports = function SwigWrap(options, layer) {
     var swig = this.swig = swigInstance = options.cache && swigInstance || new Swig(options);
     this.options = swig.options;
 
-    console.log('>>>options1' + JSON.stringify(options));
-    console.log('>>>options2' + JSON.stringify(this.options));
+    //console.log('>>>options1' + JSON.stringify(options));
+    //console.log('>>>options2' + JSON.stringify(this.options));
 
     tags.forEach(function (tag) {
         var t = require('./tags/' + tag);
@@ -67,7 +67,6 @@ SwigWrap.prototype._read = function(n) {
 };
 
 SwigWrap.prototype.makeStream = function(view, locals) {
-    console.log('--------makeStream-------');
     Readable.call(this, null);
     this.view = view;
     this.locals = locals;
@@ -104,7 +103,7 @@ Swig.prototype._w = Swig.prototype._widget = function(layer, id, attr, options) 
     var self = this;
     var pathname = layer.resolve(id);
 
-    console.log('----pathName:' +pathname + ' options:' + JSON.stringify(options));
+    //console.log('----pathName:' +pathname + ' options:' + JSON.stringify(options));
     if (!layer.supportBigPipe() || !attr.mode || attr.mode === 'sync') {
         layer.load(id);
         return this.compileFile(pathname, options);
@@ -124,7 +123,7 @@ Swig.prototype._w = Swig.prototype._widget = function(layer, id, attr, options) 
 
             compiled: function(locals) {
                 var fn = self.compileFile(pathname, options);
-                var layer = locals._fiswig;
+                var layer = locals.fiswig;
                 layer && layer.load(id);
                 return fn.apply(this, arguments);
             }

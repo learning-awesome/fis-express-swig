@@ -19,6 +19,7 @@ module.exports = function(layer, basepath, encoding) {
     };
 
     ret.load = function(identifier, cb) {
+        //console.log('>>>fiswig loader identifier----' + identifier);
         if (!fs || (cb && !fs.readFile) || !fs.readFileSync) {
             throw new Error('Unable to find file ' + identifier + ' because there is no filesystem to read from.');
         }

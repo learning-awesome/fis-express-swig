@@ -4,14 +4,14 @@ var _ = require('./util.js');
 // 此事件在 pagelet 渲染前触发。
 // 主要为了收集 js/css, 后面等 pagelet 渲染完后再把收集到的添加到 pagelet 中。
 function beforePageletRender(pagelet, locals) {
-    var layer = locals._fiswig;
+    var layer = locals.fiswig;
     var fork, subpagelets, origin;
 
     if (!layer)return;
 
     // layer 在 pagelet 里面收集的 js 不能与原来的合并。
     // 所以需要 fork 一份出来。
-    fork = locals._fiswig = layer.fork();
+    fork = locals.fiswig = layer.fork();
     
     subpagelets = [];
     origin = fork.addPagelet;
@@ -38,13 +38,13 @@ function beforePageletRender(pagelet, locals) {
 
 // 将 layer 收集的 js/css 添加到 pagelet 中。
 function afterPageletRender(pagelet, locals) {
-    var layer = locals._fiswig;
+    var layer = locals.fiswig;
 
-    console.log('----------afterPageletRender1------------');
+    //console.log('----------afterPageletRender1------------');
 
     if (!layer) return;
 
-    console.log('----------afterPageletRender2------------', JSON.stringify(layer));
+    //console.log('----------afterPageletRender2------------', JSON.stringify(layer));
 
     var scripts = layer.getScripts();
     var styles = layer.getStyles();
@@ -110,16 +110,14 @@ var createHanlder = module.exports = function(res, options) {
 
     options = _.mixin(_.mixin({}, defaultOptions), options);
 
-    console.log('--layer  options:' + JSON.stringify(options));
+    //console.log('--layer  options:' + JSON.stringify(options));
     // 静态资源 api
     var fis = res.fis;
-
-    console.log('--layer  maps:' + JSON.stringify(fis.maps));
 
     // bigpipe api
     var bigpipe = res.bigpipe;
 
-    // 模板目录
+    // tpl模板目录
     var views = options.views;
 
     console.log('--layer  views:' + JSON.stringify(views));
@@ -159,6 +157,7 @@ var createHanlder = module.exports = function(res, options) {
     };
 
     var load = function(id, async) {
+        console.log('>>>fiswig load id:' + id);
         var uri = '';
         var info, pkgInfo, url, type;
         //异步资源即使因为pkg.has引入过，也需要重新处理，向asyncs中添加
@@ -173,6 +172,7 @@ var createHanlder = module.exports = function(res, options) {
             return loaded[id];
         } else {
             info = fis.getInfo(id, true);
+            console.log('>>>fiswig load id:' + id + ' info:' + JSON.stringify(info));
 
             if (info) {
                 type = info['type'];
@@ -235,6 +235,7 @@ var createHanlder = module.exports = function(res, options) {
          * @param script  the code between <script> and </script>.
          */
         addScript: function (script) {
+            //console.log('>>>fiswig addscript:' + script);
             scripts.push(script);
         },
 
@@ -346,7 +347,7 @@ var createHanlder = module.exports = function(res, options) {
 
         getResourceMap: function() {
             var id, rMap, res, pkg;
-
+            console.log('>>>>getResourceMap:' + JSON.stringify(asyncs));
             for (id in asyncs) {
                 res = asyncs[id];
 
@@ -408,12 +409,16 @@ var createHanlder = module.exports = function(res, options) {
             var scripts = this.getScripts();
             var jses = this.getJs();
             var data = {};
-            
+
             var loadModjs = !!framework;
 
             if (loadModjs) {
                 data.framework = framework;
-                resourceMap && (data.sourceMap = JSON.stringify(resourceMap));
+            }
+
+            console.log('>>>>filterjs:'+ JSON.stringify(resourceMap||{}) );
+            if(resourceMap){
+                data.sourceMap = JSON.stringify(resourceMap||{});
             }
 
             data.resolve = this.getUrl;

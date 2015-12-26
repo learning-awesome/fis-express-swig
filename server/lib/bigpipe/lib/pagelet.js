@@ -238,6 +238,6 @@ Pagelet.prototype.toJson = function() {
 Pagelet.prototype.destroy = function() {
     this.destroyed = true;
     this.removeAllListeners();
-    this._fiswig = this.mode = this.id = this.locals =  this.compiled =  this.state = this.html = null;
+    this.fiswig = this.mode = this.id = this.locals =  this.compiled =  this.state = this.html = null;
     this.scripts = this.js = this.css = this.styles = null;
 };

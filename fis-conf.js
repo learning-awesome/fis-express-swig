@@ -64,8 +64,8 @@ fis.config.merge({
             {
                 reg: /^\/client\/views\/page\/(.+\.tpl)$/i,
                 isMod: true,
-                release: '/client/views/page/$1',
-                url: '$1',
+                release: 'client/views/page/$1',
+                url: 'page/$1',
                 extras: {
                     isPage: true
                 }
@@ -73,28 +73,33 @@ fis.config.merge({
             {
                 reg: /^\/client\/views\/page\/(.*\.(js|css))$/i,
                 isMod: true,
-                url: 'page/$1',
-                release: '/client/public/page/$1'
+                url: 'public/page/$1',
+                release: 'client/public/page/$1'
             },
             {
                 reg: /^\/client\/views\/widget\/(.*\.tpl)$/i,
                 isMod: true,
                 url: 'widget/$1',
-                release: '/client/views/widget/$1'
+                release: 'client/views/widget/$1'
             },
 
             {
                 reg: /^\/client\/views\/widget\/(.*\.(js|css))$/i,
                 isMod: true,
                 useHash:true,
-                url: 'widget/$1',
-                release: '/client/public/widget/$1'
+                url: 'public/widget/$1',
+                release: 'client/public/widget/$1'
             },
-
             {
-                reg: /^\/client\/public\/(.*)/i,
-                url: 'public/$1',
-                release: '/client/public/$1'
+                reg: /^\/client\/public\/component\/(.*)/i,
+                isMod:true,
+                url: 'public/component/$1',
+                release: 'client/public/component/$1'
+            },
+            {
+                reg: /^\/client\/public\/static\/(.*)/i,
+                url: 'public/static/$1',
+                release: 'client/public/static/$1'
             },
 
             {
@@ -105,7 +110,7 @@ fis.config.merge({
 
             {
                 reg: 'map.json',
-                release: '/client/map.json'
+                release: 'client/map.json'
             },
             {
                 reg: "**.md",

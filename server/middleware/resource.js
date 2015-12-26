@@ -2,9 +2,10 @@ var fs = require('fs');
 var path = require('path');
 var log=console.log;
 
-function ResourceApi(config_dir) {
-    this.config_dir = config_dir;
-    this.maps = undefined;
+function ResourceApi(root, prefix) {
+    this.root = root;
+    this.prefix = prefix;
+    this.lazyload();
 }
 
 /**
@@ -22,14 +23,17 @@ ResourceApi.prototype.resolve = function(id) {
 ResourceApi.prototype.getInfo = function(id, ignorePkg) {
 
     var info;
-
-    if (this.maps || this.lazyload()) {
-        info = this.maps['res'][id];
+    if (id && this.maps || this.lazyload()) {
+        var resId = id.replace(this.root + '/', "");
+        if(!new RegExp('.tpl$').test(resId) && !new RegExp('^'+this.prefix).test(resId) ){
+            resId = path.join(this.prefix, resId);
+        }
+        info = this.maps['res'][resId];
         if (!ignorePkg && info && info['pkg']) {
             info = this.maps['pkg'][info['pkg']];
         }
+        console.log('------id:' + id + ' ------resId:' + resId);
     }
-
     return info;
 };
 
@@ -47,14 +51,14 @@ ResourceApi.prototype.getPkgInfo = function(id) {
 
 ResourceApi.prototype.lazyload = function () {
 
-    var mapFilePath = path.join(this.config_dir, 'map.json');
+    var mapFilePath = path.join(path.join(this.root, this.prefix), 'map.json');
 
     console.log('---mapFilePath:' + mapFilePath);
 
     try {
         var mapJSONStr =  fs.readFileSync(mapFilePath);
         this.maps = JSON.parse(mapJSONStr);
-        console.log('>>>>mapJSONStr:'+ mapJSONStr);
+        //console.log('>>>>mapJSONStr:'+ mapJSONStr);
     } catch (e) {
         console.log('---read map error:' + e.toString());
         return false;
@@ -70,14 +74,15 @@ ResourceApi.prototype.destroy = function (id) {
 module.exports = function (options) {
     options = options || {};
 
-    var config_dir = options['config_dir'];
+    var root = options.root||'';
+    var prefix = options.prefix||'';
     var cache = options.cache;
-    var singlon = new ResourceApi(config_dir);
+    var singlon = new ResourceApi(root, prefix);
 
     return function (req, res, next) {
         var destroy;
 
-        res.fis = cache ? singlon : new ResourceApi(config_dir);
+        res.fis = cache ? singlon : new ResourceApi(root, prefix);
 
         destroy = function() {
             res.removeListener('finish', destroy);
