@@ -19,7 +19,7 @@
     - [server.conf](#serverconf)
  - [server 目录](#后端)
     - [controller 目录](#路由)
-    - [lib 目录](#组件扩展
+    - [lib 目录](#组件扩展)
     - [middleware 目录](#中间件)
     - [model 目录](＃数据模型)
     - [utils 目录](＃工具类)
@@ -31,7 +31,7 @@
 * 基于原生fis前端集成方案对前端资源进行打包，相比自定义fis扩展，方便fis组件升级和维护。
 * 整合前端和后端，提供一套骨架，并提供基于mysql的运行示例，拿来即可使用，扩展也很方便。
 * 模板引擎采用 [swig](http://paularmstrong.github.io/swig/) ，提供易用的 `html`、`head`、`body`、`widget`、`script`、`style` 等扩展标签。基于这些标签后端可以自动完成对页面的性能优化。
-* 基于 `widget` 标签，可以轻松实现让 `widget` , 同名css，js自动关联加载。
+* 基于 `widget` 标签，可以轻松实现组件化，同名tpl、 css、js自动关联加载。
 
 
 ## 快速开始
@@ -57,9 +57,7 @@ fis server start --timeout 10000  ---port 9000   --type node
 
 ### page 目录
 
-所有页面级别的模板文件，放在此目录。此tpl 可以直接在浏览器中预览。比如 page/index.tpl 可以通过 http://127.0.0.1:9000 访问。 
-
-需要强调的的是，模板引擎采用的是 [swig](http://paularmstrong.github.io/swig/), 可以采用模板继承机制来实现模板复用。
+所有页面级别的模板文件，放在此目录。此tpl 可以直接在浏览器中预览。比如 page/index.tpl 可以通过 http://127.0.0.1:9000 访问。 需要强调的的是，模板引擎采用的是 [swig](http://paularmstrong.github.io/swig/), 可以采用模板继承机制来实现模板复用。
 
 layout.tpl
 
@@ -199,7 +197,7 @@ news/index/index.tpl
 编译配置文件，详情请查看[配置 API](http://fis.baidu.com/docs/api/fis-conf.html)。
 
 
-```
+
 ### 参考
 
 + [swig](https://github.com/paularmstrong/swig/)
