@@ -2,7 +2,7 @@
     <div class="container clearfix">
         <div class="smart-header">
             <a class="logo" href="">
-                <span class="get">Smart</span>
+                <span class="get">fis-express-swig</span>
             </a>
             <div class="navbar-collapse collapse pull-right smart-header-menu">
                 <ul class="smart-cate-nav">
