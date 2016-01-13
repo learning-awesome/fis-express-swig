@@ -56,8 +56,11 @@ cd fis-express-swig
 
 
 #工程运行
-fis release -w
-fis server start --timeout 10000  ---port 9000   --type node
+fis release -w 文件修改监控
+fis release -m  资源文件md5签名 
+fis release --optimize --md5 --watch --pack # fis release -omwp
+fis release -omwp   o 资源压缩  m 资源文件md5签名  w 文件修改监控   p打包合并
+fis server start --timeout 10000  --port 9000   --type node
 ```
 
 ### page 目录

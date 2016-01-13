@@ -50,7 +50,6 @@ fis.config.merge({
             {
                 reg: 'server.js',
                 useMap:false,
-                useMap: false,
                 useHash: false,
                 useCompile: false
             },
