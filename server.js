@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var resourceMap = require('./server/middleware/resource.js');
 var swigView = require('./server/lib/swig/view/index.js');
+var bigpipe = require('./server/lib/bigpipe/index.js');
 
 // 启动express
 var app = express();
@@ -27,7 +28,8 @@ app.engine('.tpl', swigView.init({}, app));
 
 //初始化map资源依赖
 app.use(resourceMap({root: __dirname, prefix: 'client'}));
-
+//bigpipe
+app.use(bigpipe());
 app.use(favicon());
 app.use(morgan('combined'));
 app.use(bodyParser.json());

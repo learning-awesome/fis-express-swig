@@ -1,1 +1,1 @@
-<div>This is a quickling pagelet. @copy fex-team</div>
+<div>This is a quickling pagelet.</div>

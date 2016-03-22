@@ -199,7 +199,18 @@ news/index/index.tpl
   ```
 3. 纯 css 类：只是包含 css 文件。比如 compass. 同样也是可以通过 require 标签引用。
 
+### bigpipe
 
+采用 bigpipe 方案，允许你在渲染页面的时候，提前将框架输出，后续再把耗时的 pagelet 通过 chunk 方式输出到页面，以加速网页渲染。
+
+- sync 默认就是此模式，直接输出。
+- quicking 此类 widget 在输出时，只会输出个壳子，内容由用户自行决定通过 js，另起请求完成填充，包括静态资源加载。
+- async 此类 widget 在输出时，也只会输出个壳子，但是内容在 body 输出完后，chunk 输出 js 自动填充。widget 将忽略顺序，谁先准备好，谁先输出。
+- pipeline 与 async 基本相同，只是它会严格按顺序输出。
+
+  {% widget "widget/header/header.html" mode="pipeline" id="header" %}
+
+- 要让 bigpipe 正常运行，需要前端引入 bigpipe.js, 另外 pagelet 为 quickling 模式，是不会自动加载的，需要用户主动去调用 BigPipe.load 方法，才会加载并渲染
 
 ### fis-conf.js 
 

@@ -12,7 +12,7 @@
 {% require "public/static/css/normalize.css" %}
 {% require "public/static/css/bootstrap.css" %}
 {% require "public/static/css/app.css" %}
-
+{% require "public/static/js/bigpipe.js" %}
 
 {% endhead %}
 
@@ -31,6 +31,7 @@
 
 {% block aftercontent %}
 {% endblock %}
+
 
 {% endbody %}
 

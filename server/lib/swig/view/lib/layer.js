@@ -77,7 +77,7 @@ var defaultOptions = {
     tpl: {
         css: '<% if (this.css) { %>' +
                 '<% this.css.forEach(function(uri) { %>' +
-                    '<link rel="stylesheet" href="<%= uri %>" />' +
+                    '<link rel="stylesheet" href="/<%= uri %>" />' +
                 '<% }); %>' +
             '<% } %>'+
 
@@ -87,7 +87,7 @@ var defaultOptions = {
 
 
         js: '<% if (this.framework) { %>' +
-                '<script type="text/javascript" src="<%= this.framework %>"></script>' +
+                '<script type="text/javascript" src="/<%= this.framework %>"></script>' +
             '<% } %>' +
 
             '<% if (this.sourceMap) { %>' +
@@ -96,7 +96,7 @@ var defaultOptions = {
 
             '<% if (this.js) { %>' +
                 '<% this.js.forEach(function(uri) { %>' +
-                    '<script type="text/javascript" src="<%= uri %>"></script>' +
+                    '<script type="text/javascript" src="/<%= uri %>"></script>' +
                 '<% }); %>' +
             '<% } %>' +
 

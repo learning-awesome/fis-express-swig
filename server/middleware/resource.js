@@ -22,17 +22,24 @@ ResourceApi.prototype.resolve = function(id) {
 
 ResourceApi.prototype.getInfo = function(id, ignorePkg) {
 
+    // resId:widget/pagelets/async/async.tpl
     var info;
     if (id && this.maps || this.lazyload()) {
         var resId = id.replace(this.root + '/', "");
-        if(!new RegExp('.tpl$').test(resId) && !new RegExp('^'+this.prefix).test(resId) ){
-            resId = path.join(this.prefix, resId);
+        console.log('getInfo[resId]1:' + resId);
+        if(!new RegExp('^'+this.prefix).test(resId) ){
+            if(new RegExp('.tpl$').test(resId)){
+                resId = path.join(path.join(this.prefix , 'views'), resId);
+            }else{
+                resId = path.join(this.prefix, resId);
+            }
         }
+        console.log('getInfo[resId]2:' + resId);
         info = this.maps['res'][resId];
         if (!ignorePkg && info && info['pkg']) {
             info = this.maps['pkg'][info['pkg']];
         }
-        console.log('------id:' + id + ' ------resId:' + resId);
+        console.log('getInfo[id]:' + id + ' [resId]:' + resId + ' [info]:' + JSON.stringify(info));
     }
     return info;
 };
